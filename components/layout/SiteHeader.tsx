@@ -16,14 +16,14 @@ const links = [
 export function CartBadge() {
   const { count } = useCartState();
   return (
-    <button className="relative p-2 rounded-full text-ink hover:bg-ink-soft/40 transition-colors" aria-label="Cart">
+    <Link href="/cart" className="relative p-2 rounded-full text-ink hover:bg-ink-soft/40 transition-colors" aria-label="Cart">
       <ShoppingCart size={18} strokeWidth={2} />
       {count > 0 && (
         <span className="absolute top-[-2px] right-[-2px] inline-flex items-center justify-center min-w-[18px] h-[18px] rounded-full bg-ember text-[10px] font-bold text-white px-1.5 shadow-[0_2px_4px_rgba(255,77,18,0.45)]">
           {count}
         </span>
       )}
-    </button>
+    </Link>
   );
 }
 

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { getProduct, getVariantPrice } from "@/lib/products";
 import { formatPrice } from "@/lib/utils";
 import { SwitchbackDevice } from "@/components/product/SwitchbackDevice";
-import { AddToCart } from "@/components/product/AddToCart";
+import { VariantSelector } from "@/components/product/VariantSelector";
 import { SectionNumber, SectionKicker } from "@/components/ui/SectionHeadings";
 import { Button } from "@/components/ui/Button";
 
@@ -35,35 +35,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <p className="text-[1.05rem] text-steel leading-relaxed mb-8 max-w-md">{product.tagline}</p>
               <p className="text-2.6rem font-display font-bold text-ink mb-8">{formatPrice(priceCents)}</p>
 
-              <div className="space-y-6 mb-10">
-                <div>
-                  <p className="text-[0.8rem] font-mono uppercase tracking-wider text-steel mb-3">Colour</p>
-                  <div className="flex gap-3">
-                    {product.colors.map((c) => (
-                      <button
-                        key={c.id}
-                        className={`w-10 h-10 rounded-full border-2 flex-shrink-0 transition-colors ${c.id === defaultColor ? "border-ember" : "border-line"}`}
-                        style={{ backgroundColor: c.id === "graphite" ? "#17140F" : c.id === "sand" ? "#EDE9DB" : c.id === "ember" ? "#FF4D12" : "#FFFFFF" }}
-                      />
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <p className="text-[0.8rem] font-mono uppercase tracking-wider text-steel mb-3">Edition</p>
-                  <div className="flex gap-3">
-                    {product.editions.map((e) => (
-                      <button
-                        key={e.id}
-                        className={`px-4 py-2 rounded-xl text-[0.85rem] font-mono border transition-colors ${e.id === defaultEdition ? "bg-ink text-white border-ink" : "bg-white border-line text-ink hover:border-ink"}`}
-                      >
-                        {e.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <AddToCart slug={product.slug} name={product.name} color={defaultColor} edition={defaultEdition} priceCents={priceCents} />
+              <VariantSelector
+                product={{ slug: product.slug, name: product.name, colors: product.colors, editions: product.editions, priceCents: product.priceCents }}
+                defaultColor={defaultColor}
+                defaultEdition={defaultEdition}
+              />
 
               <div className="mt-10 pt-8 border-t border-line text-[0.85rem] font-mono text-steel space-y-2">
                 <p>Free standard shipping</p>
