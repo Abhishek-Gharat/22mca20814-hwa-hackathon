@@ -14,6 +14,22 @@
     "azure"
   ],
   "provider": {
+    "numes": {
+      "name": "Numes",
+      "npm": "@ai-sdk/openai-compatible",
+      "env": [
+        "NUMES_API_KEY"
+      ],
+      "options": {
+        "baseURL": "https://api.numes.ai/api/v1"
+      },
+      "models": {
+        "deepseek-v4.1-flash-uncensored-fp8:free": {
+          "name": "DeepSeek V4.1 Flash Uncensored FP8 (free)",
+          "id": "dealignai/deepseek-v4.1-flash-uncensored-fp8:free"
+        }
+      }
+    },
     "opencode": {
       "whitelist": [
         "beam-free",
